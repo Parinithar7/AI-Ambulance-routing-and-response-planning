@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="./styles.css" />
+
   </head>
   <body>
     <a class="skip-link" href="#responseBoard">Skip to response board</a>
@@ -146,6 +147,7 @@
     <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-icon">✓</span><span id="toastMessage">Demo action applied.</span></div>
     <div class="modal-backdrop" id="profileModal" hidden><div class="profile-modal"><button class="modal-close" id="closeProfile" aria-label="Close profile">×</button><div class="modal-kicker">OPERATOR PROFILE</div><div class="profile-large-avatar">AR</div><h2 id="profileName">Alex Rivera</h2><p class="profile-role">Duty coordinator · Emergency response</p><div class="profile-fields"><label>Display name<input id="profileNameInput" value="Alex Rivera" /></label><label>Role<select id="profileRole"><option>Duty coordinator</option><option>Ambulance operator</option><option>Hospital coordinator</option></select></label></div><button class="primary-button full-width" id="saveProfile" type="button"><span>Save profile</span><b>✓</b></button><button class="auth-secondary" id="signOut" type="button">Sign out to access screen</button></div></div>
     <div class="modal-backdrop" id="guideModal" hidden><div class="guide-modal"><button class="modal-close" id="closeGuide" aria-label="Close guide">×</button><div class="modal-kicker">PRESENTATION MODE</div><h2>Walk the room through the response picture.</h2><p>Use <strong>Advance scenario</strong> to move the ambulance and change the simulated conditions. Acknowledge each alarm to demonstrate triage, open the hospital network to compare handoff options, then apply the recommended route.</p><div class="guide-steps"><span><b>01</b> scan the metrics</span><span><b>02</b> triage alarms</span><span><b>03</b> choose the handoff</span></div><button class="primary-button full-width" id="startDemo" type="button"><span>Start demo walkthrough</span><b>→</b></button></div></div>
-    <script src="/app.js"></script>
+    <script src="./app.js"></script>
+
   </body>
 </html>
