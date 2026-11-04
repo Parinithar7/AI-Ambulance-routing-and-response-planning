@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08111f" />
+    <meta name="description" content="RainWatch simulated ambulance response planning dashboard" />
+    <title>RainWatch — Response planning dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#responseBoard">Skip to response board</a>
+    <section class="auth-screen" id="authScreen" aria-label="RainWatch access">
+      <div class="auth-visual"><div class="auth-brand"><div class="brand-mark" aria-hidden="true"><span></span><i></i></div><div><strong>RAINWATCH</strong><small>RESPONSE OPERATIONS</small></div></div><div class="auth-visual-copy"><span class="eyebrow-line"></span><p>Emergency response planning platform</p><h1>Move the right unit<br><em>to the right hospital.</em></h1><small>Coordinate simulated weather, traffic, ambulance routes and receiving capacity from one calm command view.</small></div><div class="auth-status"><span class="status-dot"></span> DEMO ENVIRONMENT · ALL DATA SIMULATED</div></div>
+      <div class="auth-card"><div class="auth-card-head"><span class="auth-kicker">SECURE OPERATOR ACCESS</span><h2 id="authTitle">Welcome back.</h2><p id="authSubtitle">Sign in to open the emergency response board.</p></div><form id="authForm"><label>Operator email<input id="authEmail" type="email" placeholder="coordinator@rainwatch.demo" autocomplete="email" required /></label><label>Password<input id="authPassword" type="password" placeholder="Enter demo password" autocomplete="current-password" required /></label><button class="primary-button full-width" type="submit"><span id="authSubmitLabel">Sign in to dashboard</span><b>→</b></button></form><button class="auth-secondary" id="toggleAuthMode" type="button">Create a demo operator account</button><div class="auth-divider"><span>or</span></div><button class="emergency-access" id="skipAuth" type="button"><span>!</span><div><strong>Skip to emergency dashboard</strong><small>Use when every second matters · no account required</small></div><b>→</b></button><p class="auth-note">For this final-year project, authentication is simulated. A production system would connect to secure identity and role services.</p></div>
+    </section>
+    <div class="app-shell" id="appShell" hidden>
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><i></i></div>
+          <div>
+            <div class="brand-name">RAINWATCH</div>
+            <div class="brand-subtitle">RESPONSE OPERATIONS</div>
+          </div>
+        </div>
+
+        <div class="rail-label">Workspace</div>
+        <nav class="nav-stack">
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">⌁</span><span>Response overview</span><b>01</b></button>
+          <button class="nav-item" data-view="alarms"><span class="nav-icon">!</span><span>Active alarms</span><b id="alarmNavCount">03</b></button>
+          <button class="nav-item" data-view="hospitals"><span class="nav-icon">+</span><span>Hospital network</span><b>06</b></button>
+          <button class="nav-item" data-view="route"><span class="nav-icon">↗</span><span>Route planning</span><b>LIVE</b></button>
+        </nav>
+
+        <div class="rail-label">Scenario</div>
+        <div class="scenario-card">
+          <div class="scenario-top"><span class="live-dot"></span><span>SIMULATION ACTIVE</span></div>
+          <strong id="scenarioName">Monsoon corridor / 01</strong>
+          <p>Sample data for presentation demo. No live dispatch connection.</p>
+          <div class="scenario-actions">
+            <button class="scenario-select" id="scenarioSelect" type="button">Switch scenario <span>⌄</span></button>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="operator-chip"><span class="avatar">AR</span><div><strong>Alex Rivera</strong><small>Duty coordinator</small></div><span class="presence"></span></div>
+          <button class="icon-button" id="settingsButton" aria-label="Open demo settings">⚙</button>
+        </div>
+      </aside>
+
+          <main class="main-content" id="responseBoard">
+        <header class="topbar">
+          <div class="breadcrumb"><span>COMMAND CENTER</span><i>/</i><strong>AMBULANCE RESPONSE</strong></div>
+          <div class="topbar-actions">
+            <div class="demo-clock"><span class="status-dot"></span><span id="clockLabel">LIVE DEMO</span><b id="clockTime">19:42:18</b></div>
+            <button class="help-button" id="helpButton" type="button"><span>?</span> Demo guide</button>
+            <button class="profile-button" id="profileButton" aria-label="Open profile">AR</button>
+          </div>
+        </header>
+
+        <div class="page-wrap">
+          <section class="hero-row">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> THURSDAY, 22 OCTOBER 2026 <span class="eyebrow-separator">·</span> 19:42 LOCAL</div>
+              <h1>Response picture <em>at a glance.</em></h1>
+              <p class="hero-copy">Coordinate the next move with a live simulated view of weather, traffic, incidents and hospital capacity across the north corridor.</p>
+            </div>
+            <div class="hero-cta-group">
+              <div class="simulation-note"><span class="pulse-ring"></span><div><strong>Simulation mode</strong><small>Safe to explore for your presentation</small></div></div>
+              <div class="hero-controls"><button class="sound-hero-button" id="soundHeroToggle" type="button" aria-pressed="false"><span>♩</span> Enable sound</button><button class="live-run-button" id="liveRunButton" type="button" aria-pressed="false"><span>▶</span> Run live</button><button class="primary-button" id="advanceButton" type="button"><span>Advance scenario</span><b>→</b></button></div>
+            </div>
+          </section>
+
+          <section class="brief-strip" aria-label="How the response planning demo works">
+            <div class="brief-intro"><span class="brief-tag">A.C.T. RESPONSE LOOP</span><strong>Designed for fast decisions.</strong><p id="briefCaption">Assess alerts first, then move the unit and confirm the safest handoff.</p></div>
+            <div class="brief-flow"><button class="brief-step active" data-brief="0" type="button"><b>01</b><span><strong>Assess</strong><small>Read risk signals</small></span></button><span class="brief-arrow">→</span><button class="brief-step" data-brief="1" type="button"><b>02</b><span><strong>Coordinate</strong><small>Advance the unit</small></span></button><span class="brief-arrow">→</span><button class="brief-step" data-brief="2" type="button"><b>03</b><span><strong>Transfer</strong><small>Choose a hospital</small></span></button></div>
+            <button class="brief-help" id="briefHelp" type="button" aria-label="Open the demo guide">?</button>
+          </section>
+
+          <section class="metric-strip" aria-label="Response metrics">
+            <article class="metric-card metric-highlight" title="Simulated rainfall and visibility risk"><div class="metric-label"><span class="metric-icon cloud-icon">≋</span> WEATHER RISK</div><div class="metric-value"><strong id="rainMetric" aria-live="polite">78</strong><span>%</span><i class="trend-up">↑ 12%</i></div><div class="metric-foot"><span class="rain-bars"><i></i><i></i><i></i><i></i><i></i></span> Heavy rain developing <span class="metric-time">next 25 min</span></div></article>
+            <article class="metric-card" title="Simulated congestion affecting response time"><div class="metric-label"><span class="metric-icon traffic-icon">↝</span> TRAFFIC LOAD</div><div class="metric-value"><strong id="trafficMetric" aria-live="polite">64</strong><span>%</span><i class="trend-warn">↑ 8%</i></div><div class="metric-foot"><span class="mini-road"><i></i><i></i><i></i></span> N. Ring Road <span class="metric-time">+14 min delay</span></div></article>
+            <article class="metric-card"><div class="metric-label"><span class="metric-icon ambulance-icon">+</span> UNITS IN FIELD</div><div class="metric-value"><strong>04</strong><span> active</span><i class="trend-good">● stable</i></div><div class="metric-foot"><span class="unit-dots"><i></i><i></i><i></i><i></i></span> 1 unit en route to handoff <span class="metric-time">ETA 08 min</span></div></article>
+            <article class="metric-card"><div class="metric-label"><span class="metric-icon hospital-icon">+</span> HOSPITAL COVERAGE</div><div class="metric-value"><strong>06</strong><span> facilities</span><i class="trend-good">● ready</i></div><div class="metric-foot"><span class="capacity-pill">82%</span> network capacity available <span class="metric-time">updated now</span></div></article>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="panel route-panel" id="routePanel">
+              <div class="panel-heading">
+                <div><div class="panel-kicker"><span class="live-dot"></span> LIVE SIMULATED FEED</div><h2>Ambulance route tracker</h2></div>
+                <div class="panel-actions"><button class="ghost-button" id="alternateButton" type="button"><span>⌁</span> Show alternate</button><button class="ghost-button" id="pauseButton" type="button"><span>Ⅱ</span> Pause feed</button><button class="more-button" aria-label="More route actions">···</button></div>
+              </div>
+              <div class="route-summary"><div class="unit-identity"><span class="unit-badge">A–07</span><div><strong>Unit A–07 / North corridor</strong><small><span class="green-dot"></span> En route · priority response</small><small class="driver-contact">Driver: Priya Nair · <a href="tel:+919876543210">+91 98765 43210</a></small></div></div><div class="eta-block"><small>EST. ARRIVAL</small><strong id="etaValue">08:24</strong><span id="etaSubtext">to Central Medical</span></div></div>
+              <div class="route-options" aria-label="Route comparison"><button class="route-option active" data-route="preferred" type="button"><span class="route-option-top"><strong>North Ring Road</strong><b>14:32</b></span><small><i class="route-dot preferred-dot"></i> Fastest in clear traffic · tree risk ahead</small></button><button class="route-option recommended" data-route="alternate" type="button"><span class="route-option-top"><strong>River Loop</strong><b>08:24</b></span><small><i class="route-dot alternate-dot"></i> Lower obstruction risk · saves 06:08</small><em>RECOMMENDED</em></button></div>
+              <div class="map-frame" aria-label="Simulated city route map" role="img">
+                <div class="map-topline"><span><i class="map-legend route-legend"></i> Preferred route</span><span><i class="map-legend alternate-legend"></i> Alternate</span><span><i class="map-legend risk-legend"></i> Risk area</span><span><i class="map-legend hospital-legend"></i> Hospitals</span><span class="map-updated">Updated <b id="mapUpdated">just now</b></span></div>
+                <div class="map-canvas">
+                  <div class="map-grid-lines"></div><div class="water-shape water-one"></div><div class="water-shape water-two"></div>
+                  <div class="road road-a"></div><div class="road road-b"></div><div class="road road-c"></div><div class="road road-d"></div><div class="road road-e"></div><div class="road road-f"></div><div class="road road-g"></div>
+                  <div class="road-label label-a">NORTH RING ROAD</div><div class="road-label label-b">RIVER LOOP</div><div class="road-label label-c">OLD MARKET ST.</div>
+                  <div class="district-label district-one">KALYAN NAGAR</div><div class="district-label district-two">RIVER EAST</div><div class="district-label district-three">CIVIC QUARTER</div>
+                  <div class="risk-zone"><span class="risk-pulse"></span><b>Fallen tree</b><small>RING RD · 4 min ago</small></div>
+                  <svg class="route-svg" id="routeSvg" viewBox="0 0 900 360" preserveAspectRatio="none" aria-hidden="true"><path class="alternate-route" id="alternateRoute" d="M92 292 C152 250 202 246 260 253 S365 274 434 232 S542 193 610 204 S718 180 800 98"/><path class="route-shadow" d="M92 292 C190 278 178 203 273 201 S380 246 438 192 S518 116 609 142 S711 203 800 98"/><path class="route-base" d="M92 292 C190 278 178 203 273 201 S380 246 438 192 S518 116 609 142 S711 203 800 98"/><path class="route-trace" id="routeTrace" d="M92 292 C190 278 178 203 273 201 S380 246 438 192 S518 116 609 142 S711 203 800 98"/></svg>
+                  <div class="alternate-route-label" id="alternateRouteLabel">ALT · RIVER LOOP · −06 MIN</div>
+                  <div class="checkpoint start-point"><span></span><small>DISPATCH</small></div><div class="checkpoint mid-point"><span></span><small id="checkpointLabel">CIVIC QUARTER</small></div><div class="checkpoint end-point"><span></span><small>CENTRAL MEDICAL</small></div>
+                  <div class="ambulance-marker" id="ambulanceMarker"><span class="marker-pulse"></span><div class="marker-core">+</div><small>A–07</small></div>
+                  <div class="map-scale"><span></span><small>2 km</small></div>
+                </div>
+              </div>
+              <div class="route-progress"><div class="progress-meta"><span>Route progress <strong id="progressLabel" aria-live="polite">64%</strong></span><span id="routeStatus">Approaching Civic Quarter</span></div><div class="progress-track"><div class="progress-fill" id="progressFill" style="width:64%"><span></span></div></div><div class="route-milestones"><span class="complete">Dispatched <b>19:28</b></span><span class="complete">North Ring <b>19:36</b></span><span class="current">Civic Quarter <b>now</b></span><span>Central Medical <b>19:50</b></span></div></div>
+              <div class="destination-strip" id="destinationStrip"><button class="destination-icon destination-expand" id="destinationExpand" type="button" aria-expanded="false" aria-label="Show final destination details">+</button><div class="destination-main"><small>FINAL DESTINATION</small><strong>Central Medical · Civic Quarter</strong><span id="destinationNote">Handoff planned · receiving unit notified</span></div><button class="arrived-button" id="markArrived" type="button">Mark reached</button><b class="destination-status" id="destinationStatus">EN ROUTE</b><div class="destination-details" id="destinationDetails" hidden><div><small>CONTACT</small><button class="call-button" data-hospital="Central Medical" type="button">Call +91 80 4455 1200</button></div><div><small>AVAILABLE BEDS</small><strong>18 beds</strong></div><div><small>AVAILABLE DOCTORS</small><strong>6 doctors</strong></div><div><small>RECEIVING STATUS</small><strong>Ready · 82% capacity</strong></div></div></div>
+            </article>
+
+            <aside class="panel alarm-panel" id="alarmPanel">
+              <div class="panel-heading compact"><div><div class="panel-kicker alarm-kicker"><span class="alarm-symbol">!</span> ATTENTION REQUIRED</div><h2>Response alarms <span class="count-badge" id="alarmCount">03</span></h2></div><div class="alarm-actions"><button class="sound-button" id="soundToggle" type="button" aria-pressed="false"><span>♩</span> Sound off</button><button class="more-button" aria-label="More alarm actions">···</button></div></div>
+              <div class="alarm-list" id="alarmList"></div>
+              <button class="text-button" id="viewAllAlarms" type="button">View all alarms <span>→</span></button>
+            </aside>
+          </section>
+
+          <section class="lower-grid">
+            <article class="panel hospital-panel" id="hospitalsPanel">
+              <div class="panel-heading compact"><div><div class="panel-kicker"><span class="hospital-heading-icon">+</span> NETWORK SNAPSHOT</div><h2>Nearby hospitals</h2></div><button class="outlined-button" id="filterHospitals" type="button">Filter <span>⌄</span></button></div>
+              <div class="hospital-table-head"><span>FACILITY</span><span>DRIVE TIME</span><span>CAPACITY</span><span>STATUS</span><span>CONTACT · BEDS · DOCTORS</span><span></span></div>
+              <div class="hospital-list" id="hospitalList"></div>
+              <button class="text-button hospital-footer-button" id="showHospitals" type="button">Open hospital network <span>→</span></button>
+            </article>
+            <article class="panel plan-panel" id="planPanel">
+              <div class="panel-heading compact"><div><div class="panel-kicker"><span class="plan-icon">◈</span> RESPONSE PLANNING</div><h2>Next best action</h2></div><span class="recommendation-tag">RECOMMENDED</span></div>
+              <div class="alternate-scenario"><div class="scenario-signal"><span>!</span></div><div class="alternate-scenario-copy"><strong>Emergency scenario: obstruction ahead</strong><p>Heavy rain reduces visibility while a fallen tree blocks North Ring Road. Divert A–07 through River Loop to protect response time.</p><div class="scenario-facts"><span><b>TRIGGER</b> Fallen tree</span><span><b>DECISION</b> Divert now</span><span><b>GAIN</b> 06:08 faster</span></div></div><button class="scenario-action" id="runAlternateScenario" type="button">Use this scenario <span>→</span></button></div>
+              <div class="plan-callout"><span class="callout-icon">↗</span><div><strong>Keep A–07 on the river loop.</strong><p>Traffic on North Ring Road is climbing, but River Loop saves approximately 6 minutes and Central Medical has 18 beds with 6 doctors available.</p></div></div>
+              <div class="plan-detail"><div><span>Alternate route</span><strong>River Loop → Civic Quarter</strong></div><div><span>Time saved</span><strong class="teal-text">06 min</strong></div></div>
+              <button class="primary-button full-width" id="applyPlan" type="button"><span>Apply to demo route</span><b>→</b></button>
+              <button class="why-button" id="whyButton" type="button"><span>◈</span> Why this recommendation?</button>
+              <div class="sample-disclaimer"><span>i</span> This recommendation uses simulated conditions for demonstration only.</div>
+            </article>
+          </section>
+
+          <footer class="page-footer"><span>RainWatch response operations</span><span><i class="footer-pulse"></i> All systems simulated</span><span>Build 0.8.4 · Demo environment</span></footer>
+        </div>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-icon">✓</span><span id="toastMessage">Demo action applied.</span></div>
+    <div class="modal-backdrop" id="profileModal" hidden><div class="profile-modal"><button class="modal-close" id="closeProfile" aria-label="Close profile">×</button><div class="modal-kicker">OPERATOR PROFILE</div><div class="profile-large-avatar">AR</div><h2 id="profileName">Alex Rivera</h2><p class="profile-role">Duty coordinator · Emergency response</p><div class="profile-fields"><label>Display name<input id="profileNameInput" value="Alex Rivera" /></label><label>Role<select id="profileRole"><option>Duty coordinator</option><option>Ambulance operator</option><option>Hospital coordinator</option></select></label></div><button class="primary-button full-width" id="saveProfile" type="button"><span>Save profile</span><b>✓</b></button><button class="auth-secondary" id="signOut" type="button">Sign out to access screen</button></div></div>
+    <div class="modal-backdrop" id="guideModal" hidden><div class="guide-modal"><button class="modal-close" id="closeGuide" aria-label="Close guide">×</button><div class="modal-kicker">PRESENTATION MODE</div><h2>Walk the room through the response picture.</h2><p>Use <strong>Advance scenario</strong> to move the ambulance and change the simulated conditions. Acknowledge each alarm to demonstrate triage, open the hospital network to compare handoff options, then apply the recommended route.</p><div class="guide-steps"><span><b>01</b> scan the metrics</span><span><b>02</b> triage alarms</span><span><b>03</b> choose the handoff</span></div><button class="primary-button full-width" id="startDemo" type="button"><span>Start demo walkthrough</span><b>→</b></button></div></div>
+    <script src="/app.js"></script>
+  </body>
+</html>

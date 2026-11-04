@@ -1,0 +1,9 @@
+{
+  "name": "rainwatch",
+  "version": "0.8.4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
